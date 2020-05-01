@@ -22,8 +22,18 @@ class FossilContainer extends Component {
           this.props.history.push("/login");
         } else {
           api.fossils.getFossils().then((data) => {
+            let outerArray = [];
+            let innerArray = [];
+            let length = data.length + (4 - (data.length % 4));
+            for (let i = 0; i < length; i++) {
+              data[i] ? innerArray.push(data[i]) : innerArray.push(null);
+              if (innerArray.length === 4) {
+                outerArray.push(innerArray);
+                innerArray = [];
+              }
+            }
             this.setState({
-              fossils: data,
+              fossils: outerArray,
             });
           });
         }
@@ -38,11 +48,15 @@ class FossilContainer extends Component {
           <Route
             path="/fossils/:name"
             render={(props) => {
-              console.log(props.match);
               const name = props.match.params.name;
-              const fossil = this.state.fossils.find(
-                (fos) => fos.name === name
-              );
+              let fossil;
+              this.state.fossils.forEach((array) => {
+                array.forEach((fos) => {
+                  if (fos && fos.name === name) {
+                    fossil = fos;
+                  }
+                });
+              });
               return fossil ? (
                 <FossilShow fossil={fossil} />
               ) : (

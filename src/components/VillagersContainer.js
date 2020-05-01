@@ -22,8 +22,18 @@ class VillagersContainer extends Component {
           this.props.history.push("/login");
         } else {
           api.villagers.getVillagers().then((data) => {
+            let outerArray = [];
+            let innerArray = [];
+            let length = data.length + (4 - (data.length % 4));
+            for (let i = 0; i < length; i++) {
+              data[i] ? innerArray.push(data[i]) : innerArray.push(null);
+              if (innerArray.length === 4) {
+                outerArray.push(innerArray);
+                innerArray = [];
+              }
+            }
             this.setState({
-              villagers: data,
+              villagers: outerArray,
             });
           });
         }
@@ -38,9 +48,15 @@ class VillagersContainer extends Component {
           <Route
             path="/villagers/:name"
             render={(props) => {
-              console.log(props.match);
               const name = props.match.params.name;
-              const villager = this.state.villagers.find((vil) => vil.name === name);
+              let villager;
+              this.state.villagers.forEach((array) => {
+                array.forEach((vil) => {
+                  if (vil && vil.name === name) {
+                    villager = vil;
+                  }
+                });
+              });
               return villager ? <VillagerShow villager={villager} /> : <h1>Loading...</h1>;
             }}
           />

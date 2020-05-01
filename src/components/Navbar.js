@@ -1,147 +1,78 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import { NavBar } from "react-bootstrap";
 
 class Navbar extends Component {
   render() {
     return (
-      <div>
-        <NavLink
-          className="link"
-          to="/dashboard"
-          exact
-          // style={link}
-          // activeStyle={{
-          // background: 'rgba(71, 3, 114, 0.836)'
-          // }}
-        >
-          AC Planner
-        </NavLink>
-        <NavLink
-          className="link"
-          to="/bugs"
-          exact
-          // style={link}
-          // activeStyle={{
-          // background: 'rgba(71, 3, 114, 0.836)'
-          // }}
-        >
-          Bugs
-        </NavLink>
-
-        <NavLink
-          className="link"
-          to="/fish"
-          exact
-          // style={link}
-          // activeStyle={{
-          // background: 'rgba(71, 3, 114, 0.836)'
-          // }}
-        >
-          Fish
-        </NavLink>
-
-        <NavLink
-          className="link"
-          to="/fossils"
-          exact
-          // style={link}
-          // activeStyle={{
-          // background: 'rgba(71, 3, 114, 0.836)'
-          // }}
-        >
-          Fossils
-        </NavLink>
-
-        <NavLink
-          className="link"
-          to="/villagers"
-          exact
-          // style={link}
-          // activeStyle={{
-          // background: 'rgba(71, 3, 114, 0.836)'
-          // }}
-        >
-          Villagers
-        </NavLink>
-
-        {/* {!localStorage.getItem("token") ? null : (
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        {localStorage.getItem("token") ? (
           <NavLink
-            className="link"
-            to="/phenomena"
+            className="navbar-brand d-none d-lg-inline-block"
+            to="/dashboard"
             exact
-            // style={link}
-            // activeStyle={{
-            // background: 'rgba(71, 3, 114, 0.836)'
-            // }}
           >
-            {" "}
-            Sky Phenomena
-          </NavLink>
-        )} */}
-
-        {!localStorage.getItem("token") ? (
-          <NavLink
-            className="link"
-            to="/login"
-            exact
-            // style={link}
-            // activeStyle={{
-            // background: 'rgba(71, 3, 114, 0.836)'
-            // }}
-          >
-            {" "}
-            Log In
+            {/* <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""></img> */}
+            AC Planner
           </NavLink>
         ) : (
-          // <NavLink
+          <NavLink
+            className="navbar-brand d-none d-lg-inline-block"
+            to="/"
+            exact
+          >
+            {/* <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""></img> */}
+            AC Planner
+          </NavLink>
+        )}
+
+        <div
+          className="navbar-nav ml-auto flex-nowrap"
+          id="myNavbar"
+        >
+          <NavLink className="nav-link" to="/bugs" exact>
+            Bugs
+          </NavLink>
+
+          <NavLink className="nav-link" to="/fish" exact>
+            Fish
+          </NavLink>
+
+          <NavLink className="nav-link" to="/fossils" exact>
+            Fossils
+          </NavLink>
+
+          <NavLink className="nav-link" to="/villagers" exact>
+            Villagers
+          </NavLink>
+
+          {!localStorage.getItem("token") ? (
+            <NavLink className="nav-link" to="/login" exact>
+              {" "}
+              Log In
+            </NavLink>
+          ) : // <NavLink
           //   className="link"
           //   to="/calendar"
           //   exact
-          //   // style={link}
-          //   // activeStyle={{
-          //   //     background: 'rgba(71, 3, 114, 0.836)'
-          //   // }}
           // >
           //   {" "}
           //   My Calendar
           // </NavLink>
-          null
-        )}
+          null}
 
-        {!localStorage.getItem("token") ? (
-          <NavLink
-            className="link"
-            to="/"
-            exact
-            // style={link}
-            // activeStyle={{
-            //     background: 'rgba(71, 3, 114, 0.836)'
-            // }}
-          >
-            {" "}
-            Home
-          </NavLink>
-        ) : (
-          null
-        )}
-
-        {!!localStorage.getItem("token") ? (
-          <NavLink
-            className="link"
-            to="/"
-            exact
-            // style={link}
-            // activeStyle={{
-            //     background: 'rgba(71, 3, 114, 0.836)'
-            // }}
-            onClick={this.props.logout}
-          >
-            {" "}
-            Logout
-          </NavLink>
-        ) : null}
-      </div>
+          {!!localStorage.getItem("token") ? (
+            <NavLink
+              className="nav-link"
+              to="/"
+              exact
+              onClick={this.props.logout}
+            >
+              {" "}
+              Logout
+            </NavLink>
+          ) : null}
+        </div>
+      </nav>
     );
   }
 }

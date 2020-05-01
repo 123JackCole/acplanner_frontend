@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 const Villager = (props) => {
   return (
-    <div className="item">
-      <div className="ui small image">
+    <div className="card">
+      <div className="">
         <img src={props.villager.image} alt={props.villager.name} />
       </div>
-      <div className="middle aligned content">
+      <div className="">
         {props.villager.name !== "N/A" ? (
           <div>{props.villager.name}</div>
         ) : null}
@@ -23,13 +23,13 @@ const Villager = (props) => {
         {props.villager.birthday !== "N/A" ? (
           <div>{props.villager.birthday}</div>
         ) : null}
-        <div className="extra">
-          <div className="ui big buttons">
+        <div className="">
+          <div className="">
             <Link
               to={`/villagers/${props.villager.name}`}
-              className="ui basic blue button"
+              className=""
             >
-              <i className="add circle icon" />
+              <i className="" />
               More Info
             </Link>
           </div>

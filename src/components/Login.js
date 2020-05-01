@@ -38,11 +38,11 @@ class Login extends React.Component {
     return (
       <div>
         {this.state.error ? (
-          <h2>Your password was incorrect. Please try again.</h2>
+          <h3 className="small text-center">Your password was incorrect. Please try again.</h3>
         ) : null}
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <div className="ui field">
+        <div className="d-flex justify-content-center">
+          <form onSubmit={this.handleSubmit} className="">
+            <div className="">
               <label>Username</label>
               <input
                 type="text"
@@ -52,7 +52,8 @@ class Login extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <div className="ui field">
+            <br></br>
+            <div className="">
               <label>Password</label>
               <input
                 name="password"
@@ -62,7 +63,8 @@ class Login extends React.Component {
                 onChange={this.handleChange}
               />
             </div>
-            <button type="submit" className="ui basic green button">
+            <br></br>
+            <button type="submit" className="btn btn-info">
               Login
             </button>
           </form>

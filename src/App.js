@@ -66,16 +66,6 @@ class App extends Component {
       <div>
         <Router>
           <header>
-            {/* <h1
-              style={{
-                margin: "5px",
-                paddingLeft: "10px",
-                paddingTop: "5px",
-                // fontStretch: "200%",
-              }}
-            >
-              AC Planner
-            </h1> */}
             <Navbar
               className="navbar"
               logout={this.logout}

@@ -17,16 +17,20 @@ class FishContainer extends Component {
     if (!localStorage.getItem("token")) {
       this.props.history.push("/login");
     } else {
-      api.auth.getCurrentUser().then((user) => {
-        if (user.error) {
-          this.props.history.push("/login");
-        } else {
-          api.fish.getFish().then((data) => {
-            this.setState({
-              fishes: data,
-            });
-          });
+      api.fish.getFish().then((data) => {
+        let outerArray = [];
+        let innerArray = [];
+        let length = data.length + (4 - (data.length % 4));
+        for (let i = 0; i < length; i++) {
+          data[i] ? innerArray.push(data[i]) : innerArray.push(null);
+          if (innerArray.length === 4) {
+            outerArray.push(innerArray);
+            innerArray = [];
+          }
         }
+        this.setState({
+          fishes: outerArray,
+        });
       });
     }
   }
@@ -38,9 +42,15 @@ class FishContainer extends Component {
           <Route
             path="/fish/:name"
             render={(props) => {
-              console.log(props.match);
               const name = props.match.params.name;
-              const fish = this.state.fishes.find((fsh) => fsh.name === name);
+              let fish;
+              this.state.fishes.forEach((array) => {
+                array.forEach((fsh) => {
+                  if (fsh && fsh.name === name) {
+                    fish = fsh;
+                  }
+                });
+              });
               return fish ? <FishShow fish={fish} /> : <h1>Loading...</h1>;
             }}
           />

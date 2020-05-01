@@ -11,7 +11,6 @@ class BugsContainer extends Component {
     this.state = {
       bugs: [],
     };
-
   }
 
   componentDidMount() {
@@ -23,8 +22,18 @@ class BugsContainer extends Component {
           this.props.history.push("/login");
         } else {
           api.bugs.getBugs().then((data) => {
+            let outerArray = [];
+            let innerArray = [];
+            let length = data.length + (4 - (data.length % 4));
+            for (let i = 0; i < length; i++) {
+              data[i] ? innerArray.push(data[i]) : innerArray.push(null);
+              if (innerArray.length === 4) {
+                outerArray.push(innerArray);
+                innerArray = [];
+              }
+            }
             this.setState({
-              bugs: data,
+              bugs: outerArray,
             });
           });
         }
@@ -39,19 +48,21 @@ class BugsContainer extends Component {
           <Route
             path="/bugs/:name"
             render={(props) => {
-                console.log(props.match)
               const name = props.match.params.name;
-              const bug = this.state.bugs.find((bg) => bg.name === name);
+              let bug;
+              this.state.bugs.forEach((array) => {
+                array.forEach((bg) => {
+                  if (bg && bg.name === name) {
+                    bug = bg;
+                  }
+                });
+              });
               return bug ? <BugShow bug={bug} /> : <h1>Loading...</h1>;
             }}
           />
           <Route
             path="/bugs"
-            render={() => (
-              <BugsList
-                bugs={this.state.bugs}
-              />
-            )}
+            render={() => <BugsList bugs={this.state.bugs} />}
           />
         </Switch>
       </div>

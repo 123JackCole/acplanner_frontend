@@ -17,8 +17,8 @@ const FossilShow = ({ fossil }) => {
           ) : null}
           <div className="description">
             {fossil.price !== "N/A" ? <p>Price: {fossil.price}</p> : null}
-            {fossil.sections !== "N/A" ? <p>Time: {fossil.sections}</p> : null}
-            {fossil.period !== "N/A" ? <p>Season: {fossil.period}</p> : null}
+            {fossil.sections !== "N/A" ? <p>Sections: {fossil.sections}</p> : null}
+            {fossil.period !== "N/A" ? <p>Period: {fossil.period}</p> : null}
             {fossil.length !== "N/A" ? <p>Size: {fossil.length}</p> : null}
           </div>
         </div>

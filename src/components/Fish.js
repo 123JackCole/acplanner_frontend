@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 const Fish = (props) => {
   return (
-    <div className="item">
-      <div className="ui small image">
+    <div className="card">
+      <div className="">
         <img src={props.fish.image} alt={props.fish.name} />
       </div>
-      <div className="middle aligned content">
+      <div className="">
         {props.fish.name !== "N/A" ? <div>{props.fish.name}</div> : null}
         {props.fish.location !== "N/A" ? (
           <div>{props.fish.location}</div>
@@ -22,13 +22,13 @@ const Fish = (props) => {
         {props.fish.shadow !== "N/A" ? (
           <div>{props.fish.shadow}</div>
         ) : null}
-        <div className="extra">
-          <div className="ui big buttons">
+        <div className="">
+          <div className="">
             <Link
               to={`/fish/${props.fish.name}`}
-              className="ui basic blue button"
+              className=""
             >
-              <i className="add circle icon" />
+              <i className="" />
               More Info
             </Link>
           </div>

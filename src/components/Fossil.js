@@ -3,20 +3,20 @@ import { Link } from "react-router-dom";
 
 const Fossil = (props) => {
   return (
-    <div className="item">
-      <div className="ui small image">
+    <div className="card">
+      <div className="">
         <img src={props.fossil.image} alt={props.fossil.name} />
       </div>
-      <div className="middle aligned content">
+      <div className="">
         {props.fossil.name !== "N/A" ? <div>{props.fossil.name}</div> : null}
         {props.fossil.price !== "N/A" ? <div>{props.fossil.price}</div> : null}
-        <div className="extra">
-          <div className="ui big buttons">
+        <div className="">
+          <div className="">
             <Link
               to={`/fossils/${props.fossil.name}`}
-              className="ui basic blue button"
+              className=""
             >
-              <i className="add circle icon" />
+              <i className="" />
               More Info
             </Link>
           </div>
