@@ -3,37 +3,34 @@ import { Link } from "react-router-dom";
 
 const Villager = (props) => {
   return (
-    <div className="card">
-      <div className="">
-        <img src={props.villager.image} alt={props.villager.name} />
-      </div>
-      <div className="">
-        {props.villager.name !== "N/A" ? (
-          <div>{props.villager.name}</div>
-        ) : null}
+    <div className="card rounded mb-4 box-shadow h-100">
+      <img
+        className="card-img-top img-responsive-villager"
+        src={props.villager.image}
+        alt={props.villager.name}
+      />
+      <div className="card-body d-flex flex-column">
+        {props.villager.name !== "N/A" ? <h4>{props.villager.name}</h4> : null}
         {props.villager.gender !== "N/A" ? (
-          <div>{props.villager.gender}</div>
+          <div>Gender: {props.villager.gender}</div>
         ) : null}
         {props.villager.personality !== "N/A" ? (
-          <div>{props.villager.personality}</div>
+          <div>Personality: {props.villager.personality}</div>
         ) : null}
         {props.villager.species !== "N/A" ? (
-          <div>{props.villager.species}</div>
+          <div>Species: {props.villager.species}</div>
         ) : null}
         {props.villager.birthday !== "N/A" ? (
-          <div>{props.villager.birthday}</div>
+          <div>Birthday: {props.villager.birthday}</div>
         ) : null}
-        <div className="">
-          <div className="">
-            <Link
-              to={`/villagers/${props.villager.name}`}
-              className=""
-            >
-              <i className="" />
-              More Info
-            </Link>
-          </div>
-        </div>
+        {/* <button className="mt-auto btn btn-sm btn-block btn-outline-info "> */}
+        <Link
+          to={`/villagers/${props.villager.name}`}
+          className="mt-auto btn btn-sm btn-block btn-outline-info"
+        >
+          More Info
+        </Link>
+        {/* </button> */}
       </div>
     </div>
   );

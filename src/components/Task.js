@@ -1,33 +1,32 @@
 import React, { Component } from "react";
 
 class Task extends Component {
-  constructor(props) {
-    super();
-
-    this.state = {
-      checked: false,
-    };
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick(event) {
-    this.setState({
-      checked: !this.state.checked,
-    });
-  }
 
   render() {
-    let text = this.state.checked ? (
-      <strike>{this.props.message}</strike>
-    ) : (
-      this.props.message
-    );
+    let text = this.props.message;
+
+    let boxes = [];
+    for (let i = 0; i < this.props.num_of_boxes; i++) {
+      boxes.push(
+        <input
+          key={i}
+          name={i}
+          type="checkbox"
+          defaultChecked={this.props.checked[i]}
+          onClick={(event) => this.props.onClick(event, this.props.name)}
+        />
+      );
+    }
+
     return (
       <div className="row">
         <div className="col-md-12">
-          <input type="checkbox" onClick={this.handleClick} />
-          &nbsp;{text}
           <hr />
+          <div className="text-center">
+            {text}
+            <br></br>
+            {boxes}
+          </div>
         </div>
       </div>
     );

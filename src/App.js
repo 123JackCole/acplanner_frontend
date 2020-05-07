@@ -111,53 +111,13 @@ class App extends Component {
               )}
             /> */}
 
-            <Route
-              // exact
-              path="/bugs"
-              component={BugsContainer}
-              // render={(props) => (
-              //   <Bugs
-              //     {...props}
-              //     user={this.state.auth.user}
-              //   />
-              // )}
-            />
+            <Route path="/bugs" component={BugsContainer} />
 
-            <Route
-              // exact
-              path="/fish"
-              component={FishContainer}
-              // render={(props) => (
-              //   <Fish
-              //     {...props}
-              //     user={this.state.auth.user}
-              //   />
-              // )}
-            />
+            <Route path="/fish" component={FishContainer} />
 
-            <Route
-              // exact
-              path="/fossils"
-              component={FossilsContainer}
-              // render={(props) => (
-              //   <Fossils
-              //     {...props}
-              //     user={this.state.auth.user}
-              //   />
-              // )}
-            />
+            <Route path="/fossils" component={FossilsContainer} />
 
-            <Route
-              // exact
-              path="/villagers"
-              component={VillagersContainer}
-              // render={(props) => (
-              //   <Villagers
-              //     {...props}
-              //     user={this.state.auth.user}
-              //   />
-              // )}
-            />
+            <Route path="/villagers" component={VillagersContainer} />
           </div>
         </Router>
       </div>

@@ -4,14 +4,13 @@ import { NavLink } from "react-router-dom";
 class Navbar extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-custom">
         {localStorage.getItem("token") ? (
           <NavLink
             className="navbar-brand d-none d-lg-inline-block"
             to="/dashboard"
             exact
           >
-            {/* <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""></img> */}
             AC Planner
           </NavLink>
         ) : (
@@ -20,15 +19,11 @@ class Navbar extends Component {
             to="/"
             exact
           >
-            {/* <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""></img> */}
             AC Planner
           </NavLink>
         )}
 
-        <div
-          className="navbar-nav ml-auto flex-nowrap"
-          id="myNavbar"
-        >
+        <div className="navbar-nav ml-auto flex-nowrap" id="myNavbar">
           <NavLink className="nav-link" to="/bugs" exact>
             Bugs
           </NavLink>
