@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { api } from "../services/api";
 import VillagersList from "./VillagersList";
-import VillagerShow from "./VillagerShow";
 
 class VillagersContainer extends Component {
   constructor() {
@@ -45,7 +44,7 @@ class VillagersContainer extends Component {
     return (
       <div>
         <Switch>
-          <Route
+          {/* <Route
             path="/villagers/:name"
             render={(props) => {
               const name = props.match.params.name;
@@ -59,7 +58,7 @@ class VillagersContainer extends Component {
               });
               return villager ? <VillagerShow villager={villager} /> : <h1>Loading...</h1>;
             }}
-          />
+          /> */}
           <Route
             path="/villagers"
             render={() => <VillagersList villagers={this.state.villagers} />}

@@ -45,7 +45,7 @@ class App extends Component {
     this.setState({ auth: { user: {} } });
   };
 
-  newUser = (event) => {
+  newUser = (event, redirect) => {
     let newUser = {
       username: event.target.username.value,
       password: event.target.password.value,
@@ -54,7 +54,7 @@ class App extends Component {
       console.log(res);
       if (!res.error) {
         this.login(res);
-        this.setState({ errors: false });
+        this.setState({ errors: false }, redirect);
       } else {
         this.setState({ errors: true });
       }

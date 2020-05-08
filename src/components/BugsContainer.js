@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { api } from "../services/api";
 import BugsList from "./BugsList";
-import BugShow from "./BugShow";
 
 class BugsContainer extends Component {
   constructor() {
@@ -45,9 +44,10 @@ class BugsContainer extends Component {
     return (
       <div>
         <Switch>
-          <Route
+          {/* <Route
             path="/bugs/:name"
             render={(props) => {
+
               const name = props.match.params.name;
               let bug;
               this.state.bugs.forEach((array) => {
@@ -59,7 +59,7 @@ class BugsContainer extends Component {
               });
               return bug ? <BugShow bug={bug} /> : <h1>Loading...</h1>;
             }}
-          />
+          /> */}
           <Route
             path="/bugs"
             render={() => <BugsList bugs={this.state.bugs} />}

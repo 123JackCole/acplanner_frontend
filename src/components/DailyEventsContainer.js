@@ -40,10 +40,6 @@ class DailyEvents extends Component {
       </div>
     );
   }
-
-  // let events =
-
-  //   return <div>test</div>;
 }
 
 export default DailyEvents;

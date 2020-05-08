@@ -5,7 +5,7 @@ const VillagerShow = ({ villager }) => {
   return (
     <div>
       <div className="ui card">
-        <div className="image">
+        <div className="image text-center">
           <img src={villager.image} alt={villager.name} />
         </div>
         <div className="content">

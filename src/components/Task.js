@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 class Task extends Component {
-
   render() {
     let text = this.props.message;
 
@@ -12,7 +11,7 @@ class Task extends Component {
           key={i}
           name={i}
           type="checkbox"
-          defaultChecked={this.props.checked[i]}
+          defaultChecked={this.props.checked ? this.props.checked[i] : false}
           onClick={(event) => this.props.onClick(event, this.props.name)}
         />
       );

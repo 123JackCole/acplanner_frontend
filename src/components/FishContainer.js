@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { api } from "../services/api";
 import FishList from "./FishList";
-import FishShow from "./FishShow";
 
 class FishContainer extends Component {
   constructor() {
@@ -39,7 +38,7 @@ class FishContainer extends Component {
     return (
       <div>
         <Switch>
-          <Route
+          {/* <Route
             path="/fish/:name"
             render={(props) => {
               const name = props.match.params.name;
@@ -53,7 +52,7 @@ class FishContainer extends Component {
               });
               return fish ? <FishShow fish={fish} /> : <h1>Loading...</h1>;
             }}
-          />
+          /> */}
           <Route
             path="/fish"
             render={() => <FishList fishes={this.state.fishes} />}

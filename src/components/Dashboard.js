@@ -16,14 +16,15 @@ class Dashboard extends Component {
 
   componentDidMount() {
     if (!localStorage.getItem("token")) {
-      this.props.history.push("/login");
+      this.props.history.push("/");
     } else {
       api.auth.getCurrentUser().then((user) => {
         if (user.error) {
-          this.props.history.push("/login");
+          this.props.history.push("/");
         } else {
           api.checklists.getChecklist(user.id).then((data) => {
             let string = data.checked_statuses;
+
             string = string.slice(1, string.length - 1);
 
             const outerArray = string.split("][").map((innerArray) => {
@@ -70,7 +71,6 @@ class Dashboard extends Component {
             ) : null}
           </div>
         </div>
-        {/* <div className="col col-md-4"></div> */}
       </div>
     );
   }

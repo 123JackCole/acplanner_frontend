@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { api } from "../services/api";
 import FossilsList from "./FossilsList";
-import FossilShow from "./FossilShow";
 
 class FossilContainer extends Component {
   constructor() {
@@ -45,7 +44,7 @@ class FossilContainer extends Component {
     return (
       <div>
         <Switch>
-          <Route
+          {/* <Route
             path="/fossils/:name"
             render={(props) => {
               const name = props.match.params.name;
@@ -63,7 +62,7 @@ class FossilContainer extends Component {
                 <h1>Loading...</h1>
               );
             }}
-          />
+          /> */}
           <Route
             path="/fossils"
             render={() => <FossilsList fossils={this.state.fossils} />}
