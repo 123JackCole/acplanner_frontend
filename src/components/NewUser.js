@@ -21,7 +21,6 @@ class NewUser extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.onNewUser(event, () => {
-      // console.log("being redirected")
       this.props.history.push("/dashboard");
     });
     event.target.username.value = "";
