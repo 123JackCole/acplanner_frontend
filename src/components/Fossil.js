@@ -55,11 +55,11 @@ class Fossil extends Component {
                   <div className="content">
                     <div className="header">{this.props.fossil.name}</div>
                     {this.props.fossil.scientific_name !== "N/A" ? (
-                      <div className="meta">
+                      <div>
                         Scientific name: {this.props.fossil.scientific_name}
                       </div>
                     ) : null}
-                    <div className="description">
+                    <div>
                       {this.props.fossil.price !== "N/A" ? (
                         <p>Price: {this.props.fossil.price}</p>
                       ) : null}
