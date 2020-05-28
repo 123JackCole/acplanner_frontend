@@ -56,20 +56,20 @@ class Bug extends Component {
                   <div className="image text-center">
                     <img src={this.props.bug.image} alt={this.props.bug.name} />
                   </div>
-                  <div className="">
-                    <div className="">{this.props.bug.name}</div>
+                  <div>
+                    <div>{this.props.bug.name}</div>
                     {this.props.bug.scientific_name !== "N/A" ? (
-                      <div className="">
+                      <div>
                         Scientific name: {this.props.bug.scientific_name}
                       </div>
                     ) : null}
                     {this.props.bug.family !== "N/A" ? (
-                      <div className="">
+                      <div>
                         Scientific family: {this.props.bug.family}
                       </div>
                     ) : null}
                     <br></br>
-                    <div className="">
+                    <div>
                       {this.props.bug.location !== "N/A" ? (
                         <p>Location: {this.props.bug.location}</p>
                       ) : null}
