@@ -70,7 +70,7 @@ class Villager extends Component {
                     {this.props.villager.birthday !== "N/A" ? (
                       <div>{this.props.villager.birthday}</div>
                     ) : null}
-                    <div className="description">
+                    <div>
                       {this.props.villager.quote !== "N/A" ? (
                         <p>Quote: {this.props.villager.quote}</p>
                       ) : null}
