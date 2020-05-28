@@ -67,11 +67,11 @@ class Fish extends Component {
                       </div>
                     ) : null}
                     {this.props.fish.family !== "N/A" ? (
-                      <div className="meta">
+                      <div>
                         Scientific family: {this.props.fish.family}
                       </div>
                     ) : null}
-                    <div className="description">
+                    <div>
                       {this.props.fish.location !== "N/A" ? (
                         <p>Location: {this.props.fish.location}</p>
                       ) : null}
