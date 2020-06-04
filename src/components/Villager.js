@@ -54,21 +54,24 @@ class Villager extends Component {
               <div className="modal-content">
                 <div className="card">
                   <div className="image text-center">
-                    <img src={this.props.villager.image} alt={this.props.villager.name} />
+                    <img
+                      src={this.props.villager.image}
+                      alt={this.props.villager.name}
+                    />
                   </div>
                   <div className="content">
-                    <div className="header">{this.props.villager.name}</div>
+                    <h5 className="header">{this.props.villager.name}</h5>
                     {this.props.villager.gender !== "N/A" ? (
-                      <div>{this.props.villager.gender}</div>
+                      <p>Gender: {this.props.villager.gender}</p>
                     ) : null}
                     {this.props.villager.personality !== "N/A" ? (
-                      <div>{this.props.villager.personality}</div>
+                      <p>Personality: {this.props.villager.personality}</p>
                     ) : null}
                     {this.props.villager.species !== "N/A" ? (
-                      <div>{this.props.villager.species}</div>
+                      <p>Species: {this.props.villager.species}</p>
                     ) : null}
                     {this.props.villager.birthday !== "N/A" ? (
-                      <div>{this.props.villager.birthday}</div>
+                      <p>Birthday: {this.props.villager.birthday}</p>
                     ) : null}
                     <div>
                       {this.props.villager.quote !== "N/A" ? (
@@ -86,11 +89,11 @@ class Villager extends Component {
                       {this.props.villager.picture !== "N/A" ? (
                         <p>
                           Picture:{" "}
-                          <img src={this.props.villager.picture} alt={this.props.villager.name} />
+                          <img
+                            src={this.props.villager.picture}
+                            alt={this.props.villager.name}
+                          />
                         </p>
-                      ) : null}
-                      {this.props.villager.shadow !== "N/A" ? (
-                        <div>{this.props.villager.shadow}</div>
                       ) : null}
                       {this.props.villager.siblings !== "N/A" ? (
                         <p>Siblings: {this.props.villager.siblings}</p>
@@ -102,10 +105,14 @@ class Villager extends Component {
                         <p>Fear: {this.props.villager.fear}</p>
                       ) : null}
                       {this.props.villager.favclothing !== "N/A" ? (
-                        <p>Favorite Clothing: {this.props.villager.favclothing}</p>
+                        <p>
+                          Favorite Clothing: {this.props.villager.favclothing}
+                        </p>
                       ) : null}
                       {this.props.villager.leastfavclothing !== "N/A" ? (
-                        <p>Hated Clothes: {this.props.villager.leastfavclothing}</p>
+                        <p>
+                          Hated Clothes: {this.props.villager.leastfavclothing}
+                        </p>
                       ) : null}
                       {this.props.villager.favcolor !== "N/A" ? (
                         <p>Favorite Color: {this.props.villager.favcolor}</p>

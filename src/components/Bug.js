@@ -64,9 +64,7 @@ class Bug extends Component {
                       </div>
                     ) : null}
                     {this.props.bug.family !== "N/A" ? (
-                      <div>
-                        Scientific family: {this.props.bug.family}
-                      </div>
+                      <div>Scientific family: {this.props.bug.family}</div>
                     ) : null}
                     <br></br>
                     <div>

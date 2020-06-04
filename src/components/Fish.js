@@ -57,7 +57,10 @@ class Fish extends Component {
               <div className="modal-content">
                 <div className="card">
                   <div className="image text-center">
-                    <img src={this.props.fish.image} alt={this.props.fish.name} />
+                    <img
+                      src={this.props.fish.image}
+                      alt={this.props.fish.name}
+                    />
                   </div>
                   <div className="content">
                     <div className="header">{this.props.fish.name}</div>
@@ -67,23 +70,27 @@ class Fish extends Component {
                       </div>
                     ) : null}
                     {this.props.fish.family !== "N/A" ? (
-                      <div>
-                        Scientific family: {this.props.fish.family}
-                      </div>
+                      <div>Scientific family: {this.props.fish.family}</div>
                     ) : null}
                     <div>
                       {this.props.fish.location !== "N/A" ? (
                         <p>Location: {this.props.fish.location}</p>
                       ) : null}
-                      {this.props.fish.price !== "N/A" ? <p>Price: {this.props.fish.price}</p> : null}
+                      {this.props.fish.price !== "N/A" ? (
+                        <p>Price: {this.props.fish.price}</p>
+                      ) : null}
                       {this.props.fish.time_day !== "N/A" ? (
                         <p>Time: {this.props.fish.time_day}</p>
                       ) : null}
                       {this.props.fish.time_year !== "N/A" ? (
                         <p>Season: {this.props.fish.time_year}</p>
                       ) : null}
-                      {this.props.fish.size !== "N/A" ? <p>Size: {this.props.fish.size}</p> : null}
-                      {this.props.fish.shadow !== "N/A" ? <div>Shadow: {this.props.fish.shadow}</div> : null}
+                      {this.props.fish.size !== "N/A" ? (
+                        <p>Size: {this.props.fish.size}</p>
+                      ) : null}
+                      {this.props.fish.shadow !== "N/A" ? (
+                        <div>Shadow: {this.props.fish.shadow}</div>
+                      ) : null}
                       {this.props.fish.rarity !== "N/A" ? (
                         <p>Rarity: {this.props.fish.rarity}</p>
                       ) : null}
