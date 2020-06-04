@@ -108,8 +108,7 @@ body {
 }
 
 .modal-content {
-  height: 90vh;
-  max-height: 100vh;
+  max-height: 92vh;
   overflow-y: auto;
 }
 
