@@ -69,7 +69,6 @@ const getChecklist = (user_id) => {
   }).then((res) => res.json());
 };
 
-// maybe just pass in the hash to see if that works?
 const putChecklist = (checklist) => {
   let string_statuses = "";
   checklist.checked_statuses.forEach((outerArray) => {
