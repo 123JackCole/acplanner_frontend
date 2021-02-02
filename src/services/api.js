@@ -1,4 +1,4 @@
-const API_ROOT = `https://ac-planner-backend.herokuapp.com`; //`http://localhost:3000/api/v1`;
+const API_ROOT = `https://ac-planner-backend.herokuapp.com/api/v1`; //`http://localhost:3000/api/v1`;
 const NOOKIPEDIA_API_ROOT = `https://nookipedia.com/api`;
 const NOOKIPEDIA_API_KEY = '1df0466a-0645-4a04-a2e4-4c1b69b92c4b';
 
