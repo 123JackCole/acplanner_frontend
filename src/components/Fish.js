@@ -20,7 +20,7 @@ class Fish extends Component {
     return (
       <div className="card rounded mb-4 box-shadow h-100">
         <img
-          className="card-img-top"
+          className="card-img-top img-responsive-fish"
           src={this.props.fish.image}
           alt={this.props.fish.name}
         />
