@@ -23,7 +23,7 @@ class Login extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     api.auth.login(this.state.fields).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (!res.error) {
         this.props.onLogin(res);
         this.props.history.push("/dashboard");

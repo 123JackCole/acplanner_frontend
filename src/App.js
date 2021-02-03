@@ -51,7 +51,7 @@ class App extends Component {
       password: event.target.password.value,
     };
     api.auth.newUser(newUser).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (!res.error) {
         this.login(res);
         this.setState({ errors: false }, redirect);
