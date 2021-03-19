@@ -3,7 +3,7 @@ AC Planner
 
 AC Planner is a site aimed at Animal Crossing New Horizons enthusiasts!
 
-Here's a link to a [demo](https://www.youtube.com/watch?v=lEGqJHjB6ck)
+Here's a link to the [hosted site](https://ac-planner.herokuapp.com/) and here's a video [demo](https://www.youtube.com/watch?v=lEGqJHjB6ck)
 
 ---
 
