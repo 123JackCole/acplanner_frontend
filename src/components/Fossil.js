@@ -1,94 +1,80 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Modal from "./Modal";
 
-class Fossil extends Component {
-  constructor() {
-    super();
+const Fossil = ({ fossil }) => {
+  const [show, setShow] = useState(false);
 
-    this.state = {
-      show: false,
-    };
-  }
-
-  toggleModal = () => {
-    this.setState({
-      show: !this.state.show,
-    });
+  const toggleModal = () => {
+    setShow(!show);
   };
 
-  render() {
-    return (
-      <div className="card rounded mb-4 box-shadow h-100">
-        {this.props.fossil.image ? (
-          <img
-            className="card-img-top img-responsive-fossil"
-            src={this.props.fossil.image}
-            alt={this.props.fossil.name}
-          />
+  return (
+    <div className="card rounded mb-4 box-shadow h-100">
+      {fossil.image ? (
+        <img
+          className="card-img-top img-responsive-fossil"
+          src={fossil.image}
+          alt={fossil.name}
+          style={{ objectFit: "contain", maxWidth: "100%", maxHeight: "100%" }}
+        />
+      ) : null}
+      <div className="card-body d-flex flex-column">
+        {fossil.name !== "N/A" ? <h4>{fossil.name}</h4> : null}
+        {fossil.price !== "N/A" ? (
+          <div>Price: {fossil.price}</div>
         ) : null}
-        <div className="card-body d-flex flex-column">
-          {this.props.fossil.name !== "N/A" ? (
-            <h4>{this.props.fossil.name}</h4>
-          ) : null}
-          {this.props.fossil.price !== "N/A" ? (
-            <div>Price: {this.props.fossil.price}</div>
-          ) : null}
-          <button
-            className="mt-auto btn btn-sm btn-block btn-outline-info"
-            data-toggle="modal"
-            onClick={this.toggleModal}
-          >
-            More Info
-          </button>
-        </div>
-        <div>
-          <Modal show={this.state.show}>
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="card">
-                  <div className="image">
-                    <img
-                      src={this.props.fossil.image}
-                      alt={this.props.fossil.name}
-                    />
-                  </div>
-                  <div className="content">
-                    <div className="header">{this.props.fossil.name}</div>
-                    {this.props.fossil.scientific_name !== "N/A" ? (
-                      <div>
-                        Scientific name: {this.props.fossil.scientific_name}
-                      </div>
-                    ) : null}
-                    <div>
-                      {this.props.fossil.price !== "N/A" ? (
-                        <p>Price: {this.props.fossil.price}</p>
-                      ) : null}
-                      {this.props.fossil.sections !== "N/A" ? (
-                        <p>Sections: {this.props.fossil.sections}</p>
-                      ) : null}
-                      {this.props.fossil.period !== "N/A" ? (
-                        <p>Period: {this.props.fossil.period}</p>
-                      ) : null}
-                      {this.props.fossil.length !== "N/A" ? (
-                        <p>Size: {this.props.fossil.length}</p>
-                      ) : null}
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-info"
-                    onClick={this.toggleModal}
-                  >
-                    Close
-                  </button>
+        <button
+          className="mt-auto btn btn-sm btn-block btn-outline-info"
+          data-toggle="modal"
+          onClick={toggleModal}
+        >
+          More Info
+        </button>
+      </div>
+      <div>
+        <Modal show={show}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="card">
+                <div className="image">
+                  <img src={fossil.image} alt={fossil.name} />
                 </div>
+                <div className="content">
+                  <div className="header">{fossil.name}</div>
+                  {fossil.scientific_name !== "N/A" ? (
+                    <div>
+                      Scientific name: {fossil.scientific_name}
+                    </div>
+                  ) : null}
+                  <div>
+                    {fossil.price !== "N/A" ? (
+                      <p>Price: {fossil.price}</p>
+                    ) : null}
+                    {fossil.sections !== "N/A" ? (
+                      <p>Sections: {fossil.sections}</p>
+                    ) : null}
+                    {fossil.period !== "N/A" ? (
+                      <p>Period: {fossil.period}</p>
+                    ) : null}
+                    {fossil.length !== "N/A" ? (
+                      <p>Size: {fossil.length}</p>
+                    ) : null}
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  className="btn btn-info"
+                  onClick={toggleModal}
+                >
+                  Close
+                </button>
               </div>
             </div>
-          </Modal>
-        </div>
+          </div>
+        </Modal>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Fossil;

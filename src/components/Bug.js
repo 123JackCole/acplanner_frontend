@@ -1,108 +1,95 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Modal from "./Modal";
 
-class Bug extends Component {
-  constructor() {
-    super();
+const Bug = ({ bug }) => {
+  const [show, setShow] = useState(false);
 
-    this.state = {
-      show: false,
-    };
-  }
-
-  toggleModal = () => {
-    this.setState({
-      show: !this.state.show,
-    });
+  const toggleModal = () => {
+    setShow(!show);
   };
 
-  render() {
-    return (
-      <div className="card rounded mb-4 box-shadow h-100">
-        <img
-          className="card-img-top"
-          src={this.props.bug.image}
-          alt={this.props.bug.name}
-        />
-        <div className="card-body d-flex flex-column">
-          {this.props.bug.name !== "N/A" ? (
-            <h4 className="card-title">{this.props.bug.name}</h4>
-          ) : null}
-          {this.props.bug.location !== "N/A" ? (
-            <p className="card-text">Location: {this.props.bug.location}</p>
-          ) : null}
-          {this.props.bug.price !== "N/A" ? (
-            <p className="card-text">Price: {this.props.bug.price}</p>
-          ) : null}
-          {this.props.bug.time_day !== "N/A" ? (
-            <p className="card-text">Time: {this.props.bug.time_day}</p>
-          ) : null}
-          {this.props.bug.time_year !== "N/A" ? (
-            <p className="card-text">Months: {this.props.bug.time_year}</p>
-          ) : null}
-          <button
-            className="mt-auto btn btn-sm btn-block btn-outline-info"
-            data-toggle="modal"
-            onClick={this.toggleModal}
-          >
-            More Info
-          </button>
-        </div>
-        <div>
-          <Modal show={this.state.show}>
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="card">
-                  <div className="image text-center">
-                    <img src={this.props.bug.image} alt={this.props.bug.name} />
-                  </div>
-                  <div>
-                    <div>{this.props.bug.name}</div>
-                    {this.props.bug.scientific_name !== "N/A" ? (
-                      <div>
-                        Scientific name: {this.props.bug.scientific_name}
-                      </div>
-                    ) : null}
-                    {this.props.bug.family !== "N/A" ? (
-                      <div>Scientific family: {this.props.bug.family}</div>
-                    ) : null}
-                    <br></br>
-                    <div>
-                      {this.props.bug.location !== "N/A" ? (
-                        <p>Location: {this.props.bug.location}</p>
-                      ) : null}
-                      {this.props.bug.price !== "N/A" ? (
-                        <p>Price: {this.props.bug.price}</p>
-                      ) : null}
-                      {this.props.bug.time_day !== "N/A" ? (
-                        <p>Time: {this.props.bug.time_day}</p>
-                      ) : null}
-                      {this.props.bug.time_year !== "N/A" ? (
-                        <p>Season: {this.props.bug.time_year}</p>
-                      ) : null}
-                      {this.props.bug.size !== "N/A" ? (
-                        <p>Size: {this.props.bug.size}</p>
-                      ) : null}
-                      {this.props.bug.rarity !== "N/A" ? (
-                        <p>Rarity: {this.props.bug.rarity}</p>
-                      ) : null}
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-info"
-                    onClick={this.toggleModal}
-                  >
-                    Close
-                  </button>
+  return (
+    <div className="card rounded mb-4 box-shadow h-100">
+      { bug.image === "N/A" ? null : <img
+        className="card-img-top img-responsive-bug"
+        src={bug.image}
+        alt={bug.name}
+        style={{ objectFit: "contain", maxWidth: "100%", maxHeight: "100%" }}
+      />}
+      <div className="card-body d-flex flex-column">
+        {bug.name !== "N/A" ? (
+          <h4 className="card-title">{bug.name}</h4>
+        ) : null}
+        {bug.location !== "N/A" ? (
+          <p className="card-text">Location: {bug.location}</p>
+        ) : null}
+        {bug.price !== "N/A" ? (
+          <p className="card-text">Price: {bug.price}</p>
+        ) : null}
+        {bug.time_day !== "N/A" ? (
+          <p className="card-text">Time: {bug.time_day}</p>
+        ) : null}
+        {bug.time_year !== "N/A" ? (
+          <p className="card-text">Months: {bug.time_year}</p>
+        ) : null}
+        <button
+          className="mt-auto btn btn-sm btn-block btn-outline-info"
+          data-toggle="modal"
+          onClick={toggleModal}
+        >
+          More Info
+        </button>
+      </div>
+      <div>
+        <Modal show={show}>
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="card">
+                <div className="image text-center">
+                  <img src={bug.image} alt={bug.name} />
                 </div>
+                <div>
+                  <div>{bug.name}</div>
+                  {bug.scientific_name !== "N/A" ? (
+                    <div>
+                      Scientific name: {bug.scientific_name}
+                    </div>
+                  ) : null}
+                  {bug.family !== "N/A" ? (
+                    <div>Scientific family: {bug.family}</div>
+                  ) : null}
+                  <br />
+                  <div>
+                    {bug.location !== "N/A" ? (
+                      <p>Location: {bug.location}</p>
+                    ) : null}
+                    {bug.price !== "N/A" ? (
+                      <p>Price: {bug.price}</p>
+                    ) : null}
+                    {bug.time_day !== "N/A" ? (
+                      <p>Time: {bug.time_day}</p>
+                    ) : null}
+                    {bug.time_year !== "N/A" ? (
+                      <p>Season: {bug.time_year}</p>
+                    ) : null}
+                    {bug.size !== "N/A" ? (
+                      <p>Size: {bug.size}</p>
+                    ) : null}
+                    {bug.rarity !== "N/A" ? (
+                      <p>Rarity: {bug.rarity}</p>
+                    ) : null}
+                  </div>
+                </div>
+                <button type="button" className="btn btn-info" onClick={toggleModal}>
+                  Close
+                </button>
               </div>
             </div>
-          </Modal>
-        </div>
+          </div>
+        </Modal>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default Bug;

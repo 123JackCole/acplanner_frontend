@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Event = (props) => {
-  let images = [];
+  const [images, setImages] = useState([]);
+
   if (props.images) {
-    images = props.images.map((image) => {
-      return <img src={image} alt={props.event} key={image}></img>;
-    });
+    setImages(
+      props.images.map((image) => (
+        <img src={image} alt={props.event} key={image} />
+      ))
+    );
   }
 
   return (
@@ -14,7 +17,7 @@ const Event = (props) => {
         <hr />
         <div className="text-center">
           {props.event}
-          <br></br>
+          <br />
           {images}
         </div>
       </div>

@@ -1,24 +1,18 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { api } from "../services/api";
 import FossilsList from "./FossilsList";
 
-class FossilContainer extends Component {
-  constructor() {
-    super();
+const FossilContainer = (props) => {
+  const [fossils, setFossils] = useState([]);
 
-    this.state = {
-      fossils: [],
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     if (!localStorage.getItem("token")) {
-      this.props.history.push("/login");
+      props.history.push("/login");
     } else {
       api.auth.getCurrentUser().then((user) => {
         if (user.error) {
-          this.props.history.push("/login");
+          props.history.push("/login");
         } else {
           api.fossils.getFossils().then((data) => {
             let outerArray = [];
@@ -31,25 +25,22 @@ class FossilContainer extends Component {
                 innerArray = [];
               }
             }
-            this.setState({
-              fossils: outerArray,
-            });
+            setFossils(outerArray);
           });
         }
       });
     }
-  }
+  }, [props.history]);
 
-  render() {
-    return (
-      <div>
-        <Switch>
-          {/* <Route
+  return (
+    <div>
+      <Switch>
+        {/* <Route
             path="/fossils/:name"
             render={(props) => {
               const name = props.match.params.name;
               let fossil;
-              this.state.fossils.forEach((array) => {
+              fossils.forEach((array) => {
                 array.forEach((fos) => {
                   if (fos && fos.name === name) {
                     fossil = fos;
@@ -63,14 +54,13 @@ class FossilContainer extends Component {
               );
             }}
           /> */}
-          <Route
-            path="/fossils"
-            render={() => <FossilsList fossils={this.state.fossils} />}
-          />
-        </Switch>
-      </div>
-    );
-  }
-}
+        <Route
+          path="/fossils"
+          render={() => <FossilsList fossils={fossils} />}
+        />
+      </Switch>
+    </div>
+  );
+};
 
 export default FossilContainer;

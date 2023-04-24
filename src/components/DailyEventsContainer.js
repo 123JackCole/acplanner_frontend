@@ -1,45 +1,40 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Event from "./Event";
 
-class DailyEvents extends Component {
-  constructor(props) {
-    super();
+const DailyEvents = (props) => {
+  const [message, setMessage] = useState("");
+  const [events, setEvents] = useState([]);
+  const [images, setImages] = useState([]);
 
-    this.state = {
-      message: "",
-      events: [],
-      images: [],
-    };
-  }
+  useEffect(() => {
+    let message = props.events.message;
+    let images = props.events.villager_images;
 
-  componentDidMount() {
-    let message = this.props.events.message;
-    let images = this.props.events.villager_images;
+    let events;
+    if (props.events.events) {
+      events = props.events.events.map((event) => {
+        if (event.includes("birthday")) {
+          return <Event event={event} images={images} key={event} />;
+        } else {
+          return <Event event={event} key={event} />;
+        }
+      });
+    } else {
+      events = [];
+    }
 
-    let events = this.props.events.events.map((event) => {
-      if (event.includes("birthday")) {
-        return <Event event={event} images={images} key={event} />;
-      } else {
-        return <Event event={event} key={event} />;
-      }
-    });
+    setMessage(message);
+    setEvents(events);
+    setImages(images);
+  }, [props.events]);
 
-    this.setState({
-      message,
-      events,
-      images,
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <hr />
-        <h4 className="text-center">{this.state.message}</h4>
-        <h4>{this.state.events}</h4>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <hr />
+      <h4 className="text-center">{message}</h4>
+      <h4>{events}</h4>
+    </div>
+  );
 }
 
 export default DailyEvents;

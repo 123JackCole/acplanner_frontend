@@ -1,26 +1,19 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { api } from "../services/api";
 import DailyEvents from "./DailyEventsContainer";
 import Checklist from "./ChecklistContainer";
 
-class Dashboard extends Component {
-  constructor() {
-    super();
+const Dashboard = ({ history }) => {
+  const [checklist, setChecklist] = useState([]);
+  const [events, setEvents] = useState({});
 
-    this.state = {
-      checklist: [],
-      events: {},
-      //   displayToggle: 'Fish'
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     if (!localStorage.getItem("token")) {
-      this.props.history.push("/");
+      history.push("/");
     } else {
       api.auth.getCurrentUser().then((user) => {
         if (user.error) {
-          this.props.history.push("/");
+          history.push("/");
         } else {
           api.checklists.getChecklist(user.id).then((data) => {
             let string = data.checked_statuses;
@@ -35,45 +28,35 @@ class Dashboard extends Component {
 
             data = { ...data, checked_statuses: outerArray };
 
-            this.setState({
-              checklist: data,
-            });
+            setChecklist(data);
           });
 
           api.events.getEventsToday().then((events) => {
-            this.setState({
-              events,
-            });
+            setEvents(events);
           });
         }
       });
     }
-  }
+  }, [history]);
 
-  render() {
-    return (
-      <div className="row">
-        <div className="col col-md-6">
-          <div className="card h-100">
-            <br></br>
-            <h2 className="card-title text-center"> Current Events </h2>
-            {this.state.events.message ? (
-              <DailyEvents events={this.state.events} />
-            ) : null}
-          </div>
-        </div>
-        <div className="col col-md-6">
-          <div className="card h-100">
-            <br></br>
-            <h2 className="card-title text-center"> Daily Checklist </h2>
-            {this.state.checklist.id ? (
-              <Checklist checklist={this.state.checklist} />
-            ) : null}
-          </div>
+  return (
+    <div className="row">
+      <div className="col col-md-6">
+        <div className="card h-100">
+          <br></br>
+          <h2 className="card-title text-center"> Current Events </h2>
+          {events.message ? <DailyEvents events={events} /> : null}
         </div>
       </div>
-    );
-  }
-}
+      <div className="col col-md-6">
+        <div className="card h-100">
+          <br></br>
+          <h2 className="card-title text-center"> Daily Checklist </h2>
+          {checklist.id ? <Checklist checklist={checklist} /> : null}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Dashboard;

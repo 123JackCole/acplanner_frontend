@@ -1,20 +1,14 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { api } from "../services/api";
 import FishList from "./FishList";
 
-class FishContainer extends Component {
-  constructor() {
-    super();
+const FishContainer = ({ history }) => {
+  const [fishes, setFishes] = useState([]);
 
-    this.state = {
-      fishes: [],
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     if (!localStorage.getItem("token")) {
-      this.props.history.push("/login");
+      history.push("/login");
     } else {
       api.fish.getFish().then((data) => {
         let outerArray = [];
@@ -27,18 +21,15 @@ class FishContainer extends Component {
             innerArray = [];
           }
         }
-        this.setState({
-          fishes: outerArray,
-        });
+        setFishes(outerArray);
       });
     }
-  }
+  }, [history]);
 
-  render() {
-    return (
-      <div>
-        <Switch>
-          {/* <Route
+  return (
+    <div>
+      <Switch>
+        {/* <Route
             path="/fish/:name"
             render={(props) => {
               const name = props.match.params.name;
@@ -53,14 +44,10 @@ class FishContainer extends Component {
               return fish ? <FishShow fish={fish} /> : <h1>Loading...</h1>;
             }}
           /> */}
-          <Route
-            path="/fish"
-            render={() => <FishList fishes={this.state.fishes} />}
-          />
-        </Switch>
-      </div>
-    );
-  }
-}
+        <Route path="/fish" render={() => <FishList fishes={fishes} />} />
+      </Switch>
+    </div>
+  );
+};
 
 export default FishContainer;

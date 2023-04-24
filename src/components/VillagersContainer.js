@@ -1,24 +1,19 @@
-import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Switch, useHistory } from "react-router-dom";
 import { api } from "../services/api";
 import VillagersList from "./VillagersList";
 
-class VillagersContainer extends Component {
-  constructor() {
-    super();
+function VillagersContainer() {
+  const [villagers, setVillagers] = useState([]);
+  const history = useHistory();
 
-    this.state = {
-      villagers: [],
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     if (!localStorage.getItem("token")) {
-      this.props.history.push("/login");
+      history.push("/login");
     } else {
       api.auth.getCurrentUser().then((user) => {
         if (user.error) {
-          this.props.history.push("/login");
+          history.push("/login");
         } else {
           api.villagers.getVillagers().then((data) => {
             let outerArray = [];
@@ -31,42 +26,38 @@ class VillagersContainer extends Component {
                 innerArray = [];
               }
             }
-            this.setState({
-              villagers: outerArray,
-            });
+            setVillagers(outerArray);
           });
         }
       });
     }
-  }
+  }, [history]);
 
-  render() {
-    return (
-      <div>
-        <Switch>
-          {/* <Route
-            path="/villagers/:name"
-            render={(props) => {
-              const name = props.match.params.name;
-              let villager;
-              this.state.villagers.forEach((array) => {
-                array.forEach((vil) => {
-                  if (vil && vil.name === name) {
-                    villager = vil;
-                  }
-                });
+  return (
+    <div>
+      <Switch>
+        {/* <Route
+          path="/villagers/:name"
+          render={(props) => {
+            const name = props.match.params.name;
+            let villager;
+            villagers.forEach((array) => {
+              array.forEach((vil) => {
+                if (vil && vil.name === name) {
+                  villager = vil;
+                }
               });
-              return villager ? <VillagerShow villager={villager} /> : <h1>Loading...</h1>;
-            }}
-          /> */}
-          <Route
-            path="/villagers"
-            render={() => <VillagersList villagers={this.state.villagers} />}
-          />
-        </Switch>
-      </div>
-    );
-  }
+            });
+            return villager ? <VillagerShow villager={villager} /> : <h1>Loading...</h1>;
+          }}
+        /> */}
+        <Route
+          path="/villagers"
+          render={() => <VillagersList villagers={villagers} />}
+        />
+      </Switch>
+    </div>
+  );
 }
 
 export default VillagersContainer;

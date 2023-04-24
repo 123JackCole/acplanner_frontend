@@ -1,61 +1,33 @@
-import React, { Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { api } from "../services/api";
 import { Redirect } from "react-router-dom";
 
 const AuthHOC = (WrappedComponent) => {
-  return class AuthHOC extends React.Component {
-    state = {
-      authorized: false,
-      response: false,
-    };
+  const AuthWrapper = (props) => {
+    const [authorized, setAuthorized] = useState(false);
 
-    componentDidMount() {
-      this.checkLogin();
-    }
+    useEffect(() => {
+      checkLogin();
+    }, []);
 
-    checkLogin = () => {
+    const checkLogin = () => {
       if (!localStorage.getItem("token")) {
-        this.setState({
-          authorized: false,
-          response: true,
-        });
+        setAuthorized(false);
       } else {
         api.auth.getCurrentUser().then((resp) => {
           if (resp.error) {
-            this.setState({
-              authorized: false,
-              response: true,
-            });
+            setAuthorized(false);
           } else {
-            this.setState({
-              authorized: true,
-              response: true,
-            });
+            setAuthorized(true);
           }
         });
       }
     };
 
-    isAuthorized = () => {
-      return this.state.authorized;
-    };
-
-    isNotAuthorized = () => {
-      return !this.state.authorized && this.state.responseCollection;
-    };
-
-    render() {
-      return (
-        <div>
-          {this.isAuthorized() ? (
-            <WrappedComponent {...this.props} />
-          ) : this.isNotAuthorized() ? (
-            <Redirect to="/login" />
-          ) : null}
-        </div>
-      );
-    }
+    return authorized ? <WrappedComponent {...props} /> : <Redirect to="/login" />;
   };
+
+  return AuthWrapper;
 };
 
 export default AuthHOC;

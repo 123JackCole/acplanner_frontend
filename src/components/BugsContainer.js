@@ -1,24 +1,18 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { api } from "../services/api";
 import BugsList from "./BugsList";
 
-class BugsContainer extends Component {
-  constructor() {
-    super();
+const BugsContainer = (props) => {
+  const [bugs, setBugs] = useState([]);
 
-    this.state = {
-      bugs: [],
-    };
-  }
-
-  componentDidMount() {
+  useEffect(() => {
     if (!localStorage.getItem("token")) {
-      this.props.history.push("/login");
+      props.history.push("/login");
     } else {
       api.auth.getCurrentUser().then((user) => {
         if (user.error) {
-          this.props.history.push("/login");
+          props.history.push("/login");
         } else {
           api.bugs.getBugs().then((data) => {
             let outerArray = [];
@@ -31,43 +25,36 @@ class BugsContainer extends Component {
                 innerArray = [];
               }
             }
-            this.setState({
-              bugs: outerArray,
-            });
+            setBugs(outerArray);
           });
         }
       });
     }
-  }
+  }, [props.history]);
 
-  render() {
-    return (
-      <div>
-        <Switch>
-          {/* <Route
-            path="/bugs/:name"
-            render={(props) => {
+  return (
+    <div>
+      <Switch>
+        {/* <Route
+          path="/bugs/:name"
+          render={(props) => {
 
-              const name = props.match.params.name;
-              let bug;
-              this.state.bugs.forEach((array) => {
-                array.forEach((bg) => {
-                  if (bg && bg.name === name) {
-                    bug = bg;
-                  }
-                });
+            const name = props.match.params.name;
+            let bug;
+            bugs.forEach((array) => {
+              array.forEach((bg) => {
+                if (bg && bg.name === name) {
+                  bug = bg;
+                }
               });
-              return bug ? <BugShow bug={bug} /> : <h1>Loading...</h1>;
-            }}
-          /> */}
-          <Route
-            path="/bugs"
-            render={() => <BugsList bugs={this.state.bugs} />}
-          />
-        </Switch>
-      </div>
-    );
-  }
-}
+            });
+            return bug ? <BugShow bug={bug} /> : <h1>Loading...</h1>;
+          }}
+        /> */}
+        <Route path="/bugs" render={() => <BugsList bugs={bugs} />} />
+      </Switch>
+    </div>
+  );
+};
 
 export default BugsContainer;
