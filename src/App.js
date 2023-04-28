@@ -61,7 +61,7 @@ function App() {
             <Navbar className="navbar" logout={logout} user={auth.user} />
           </header>
           <div>
-            <Route exact path="/#" render={(props) => <Landing {...props} />} />
+            <Route exact path="/" render={(props) => <Landing {...props} />} />
 
             <Route
               exact
