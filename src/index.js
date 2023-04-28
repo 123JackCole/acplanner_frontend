@@ -4,10 +4,13 @@ import './css/index.css';
 import './css/custom.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { HashRouter } from 'react-router-dom/cjs/react-router-dom.min';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <HashRouter>
+      <App />
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
