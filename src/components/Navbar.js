@@ -17,7 +17,7 @@ function Navbar(props) {
       ) : (
         <NavLink
           className="navbar-brand d-none d-lg-inline-block"
-          to="/"
+          to="/#"
           exact
         >
           AC Planner
@@ -51,7 +51,7 @@ function Navbar(props) {
         {isAuthenticated ? (
           <NavLink
             className="nav-link"
-            to="/"
+            to="/#"
             exact
             onClick={props.logout}
           >

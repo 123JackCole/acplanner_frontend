@@ -9,11 +9,11 @@ const Dashboard = ({ history }) => {
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
-      history.push("/");
+      history.push("/#");
     } else {
       api.auth.getCurrentUser().then((user) => {
         if (user.error) {
-          history.push("/");
+          history.push("/#");
         } else {
           api.checklists.getChecklist(user.id).then((data) => {
             let string = data.checked_statuses;

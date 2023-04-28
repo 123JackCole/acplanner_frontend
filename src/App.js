@@ -56,12 +56,12 @@ function App() {
   return (
     <div>
       <Router>
-        <HashRouter basename="/">
+        <HashRouter>
           <header>
             <Navbar className="navbar" logout={logout} user={auth.user} />
           </header>
           <div>
-            <Route exact path="/" render={(props) => <Landing {...props} />} />
+            <Route exact path="/#" render={(props) => <Landing {...props} />} />
 
             <Route
               exact
