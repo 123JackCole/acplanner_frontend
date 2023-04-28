@@ -1,4 +1,4 @@
-const API_ROOT = `http://localhost:3000/api/v1`;//`https://ac-planner-backend.herokuapp.com/api/v1`; 
+const API_ROOT = 'postgres://ocurnzoqcaisps:65312d1def18ac23f70c51f4443436618d214ee4da8d8df630aef056cfeb1653@ec2-54-208-11-146.compute-1.amazonaws.com:5432/df4gddvbavaqjq'; //`https://ac-planner-backend.herokuapp.com/api/v1`; //`http://localhost:3000/api/v1`;
 // 
 const NOOKIPEDIA_API_ROOT = `https://nookipedia.com/api`;
 const NOOKIPEDIA_API_KEY = '1df0466a-0645-4a04-a2e4-4c1b69b92c4b';
