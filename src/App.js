@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { api } from "./services/api";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Landing from "./components/Landing";
 import NewUser from "./components/NewUser";
@@ -55,44 +56,46 @@ function App() {
   return (
     <div>
       <Router>
-        <header>
-          <Navbar className="navbar" logout={logout} user={auth.user} />
-        </header>
-        <div>
-          <Route exact path="/" render={(props) => <Landing {...props} />} />
+        <HashRouter basename="/">
+          <header>
+            <Navbar className="navbar" logout={logout} user={auth.user} />
+          </header>
+          <div>
+            <Route exact path="/" render={(props) => <Landing {...props} />} />
 
-          <Route
-            exact
-            path="/login"
-            render={(props) => <Login {...props} onLogin={login} />}
-          />
+            <Route
+              exact
+              path="/login"
+              render={(props) => <Login {...props} onLogin={login} />}
+            />
 
-          <Route
-            exact
-            path="/signup"
-            render={(props) => (
-              <NewUser
-                {...props}
-                appState={auth}
-                onNewUser={(event) => newUser(event, props.history.push)}
-              />
-            )}
-          />
+            <Route
+              exact
+              path="/signup"
+              render={(props) => (
+                <NewUser
+                  {...props}
+                  appState={auth}
+                  onNewUser={(event) => newUser(event, props.history.push)}
+                />
+              )}
+            />
 
-          <Route
-            exact
-            path="/dashboard"
-            render={(props) => <Dashboard {...props} appState={auth} />}
-          />
+            <Route
+              exact
+              path="/dashboard"
+              render={(props) => <Dashboard {...props} appState={auth} />}
+            />
 
-          <Route path="/bugs" component={BugsContainer} />
+            <Route path="/bugs" component={BugsContainer} />
 
-          <Route path="/fish" component={FishContainer} />
+            <Route path="/fish" component={FishContainer} />
 
-          <Route path="/fossils" component={FossilsContainer} />
+            <Route path="/fossils" component={FossilsContainer} />
 
-          <Route path="/villagers" component={VillagersContainer} />
-        </div>
+            <Route path="/villagers" component={VillagersContainer} />
+          </div>
+        </HashRouter>
       </Router>
     </div>
   );
