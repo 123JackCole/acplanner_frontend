@@ -40,6 +40,7 @@ function App() {
   };
 
   const newUser = (event, redirect) => {
+    console.log(redirect)
     event.preventDefault();
     let newUser = {
       username: event.target.username.value,
@@ -73,7 +74,6 @@ function App() {
               exact
               path="/signup"
               render={(props) => (
-                console.log(props)
                 <NewUser
                   {...props}
                   appState={auth}
