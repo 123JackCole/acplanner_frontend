@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/acplanner_frontend/precache-manifest.dd0983016fad31e1a8af75383cba3070.js"
+  "/acplanner_frontend/precache-manifest.8ed72eb45855a834948adeda4a5df470.js"
 );
 
 self.addEventListener('message', (event) => {

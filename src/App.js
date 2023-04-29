@@ -48,7 +48,7 @@ function App() {
     api.auth.newUser(newUser).then((res) => {
       if (!res.error) {
         login(res);
-        redirect("/#");
+        redirect();
       }
     });
   };
@@ -73,6 +73,7 @@ function App() {
               exact
               path="/signup"
               render={(props) => (
+                console.log(props)
                 <NewUser
                   {...props}
                   appState={auth}
