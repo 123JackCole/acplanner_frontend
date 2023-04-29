@@ -76,7 +76,7 @@ function App() {
                 <NewUser
                   {...props}
                   appState={auth}
-                  onNewUser={(event) => newUser(event, props.history.push)}
+                  onNewUser={(event) => newUser(event, "/#")} //props.history.push
                 />
               )}
             />
