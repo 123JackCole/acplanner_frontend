@@ -48,7 +48,7 @@ function App() {
     api.auth.newUser(newUser).then((res) => {
       if (!res.error) {
         login(res);
-        redirect();
+        redirect("/#");
       }
     });
   };
@@ -76,7 +76,7 @@ function App() {
                 <NewUser
                   {...props}
                   appState={auth}
-                  onNewUser={(event) => newUser(event, "/#")} //props.history.push
+                  onNewUser={(event) => newUser(event, props.history.push)}
                 />
               )}
             />
