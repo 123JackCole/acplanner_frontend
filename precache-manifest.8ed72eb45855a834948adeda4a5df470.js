@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "11a1f27b6dc19b12872b0e4b563da3fb",
+    "revision": "0795c77f8d1c9a51b965daca67e49cb6",
     "url": "/acplanner_frontend/index.html"
   },
   {
-    "revision": "5ab9192a90ed5b822697",
+    "revision": "0a8d130370747565dd0d",
     "url": "/acplanner_frontend/static/css/main.1dc18626.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/acplanner_frontend/static/js/2.81453ae2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5ab9192a90ed5b822697",
-    "url": "/acplanner_frontend/static/js/main.a1e9b005.chunk.js"
+    "revision": "0a8d130370747565dd0d",
+    "url": "/acplanner_frontend/static/js/main.fefed0a3.chunk.js"
   },
   {
     "revision": "677cb64345a0a1216dc3",
