@@ -39,9 +39,7 @@ function App() {
     setAuth({ user: {} });
   };
 
-  const newUser = (event, redirect) => {
-    console.log("new user")
-    console.log(redirect)
+  const newUser = (event) => { //, redirect
     event.preventDefault();
     let newUser = {
       username: event.target.username.value,
@@ -50,7 +48,8 @@ function App() {
     api.auth.newUser(newUser).then((res) => {
       if (!res.error) {
         login(res);
-        redirect();
+        window.location.hash = "/dashboard";
+        // redirect();
       }
     });
   };
@@ -78,7 +77,7 @@ function App() {
                 <NewUser
                   {...props}
                   appState={auth}
-                  onNewUser={(event) => newUser(event, props.history.push)}
+                  onNewUser={(event) => newUser(event)} //, props.history.push
                 />
               )}
             />
