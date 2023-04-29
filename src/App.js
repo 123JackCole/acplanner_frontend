@@ -40,6 +40,7 @@ function App() {
   };
 
   const newUser = (event, redirect) => {
+    console.log("new user")
     console.log(redirect)
     event.preventDefault();
     let newUser = {
